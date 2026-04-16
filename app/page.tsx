@@ -1,3 +1,4 @@
+https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn
 "use client";
 
 import { useState } from "react";
@@ -170,6 +171,121 @@ const BATHROOMS = [
   },
 ];
 
+const KITCHEN = {
+  id: "kitchen",
+  name: "Estimated Prophet",
+  location: "Main Floor — Kitchen",
+  status: "planned",
+  layout: "L-Shape",
+  style: "Modern Farmhouse",
+  dimensions: {
+    northWall: "~10 ft",
+    eastWall: "~6 ft",
+    totalCounter: "~40-55 sqft",
+  },
+  paintColor: "Pale Oak (BM OC-20)",
+  ceilingColor: "White Dove (BM OC-17)",
+  budget: { target: 0, estimated: 0 },
+  materials: [
+    {
+      area: "Upper cabinets",
+      name: "White/cream shaker doors",
+      details: "Bright, airy uppers + 1 glass-front display cabinet for entertaining",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "cabinet",
+    },
+    {
+      area: "Lower cabinets",
+      name: "Gray-green sage shaker doors",
+      details: "Echoes Healing Aloe (primary bedroom) and Boothbay Gray (loft) — ties house palette together",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "cabinet",
+    },
+    {
+      area: "Countertops",
+      name: "Warm marble-look surface",
+      details: "Laminate or quartz TBD — soft white with warm gray veining to complement Pale Oak walls",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "surface",
+    },
+    {
+      area: "Backsplash",
+      name: 'White subway tile 3×6"',
+      details: "Brick-lay pattern with warm grout (linen/cream). Herringbone accent behind range optional.",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "surface",
+    },
+    {
+      area: "Sink",
+      name: 'White fireclay farmhouse apron-front 33"',
+      details: "Single bowl, reversible front. Deep basin for entertaining — handles large pots and sheet pans.",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "fixture",
+    },
+    {
+      area: "Faucet",
+      name: "Brushed gold/brass bridge faucet",
+      details: "Bridge or high-arc pull-down style. Brass finish echoes cabinet hardware.",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "fixture",
+    },
+    {
+      area: "Hardware",
+      name: "Brass cup pulls + bar pulls",
+      details: "Cup pulls on sage lowers for farmhouse charm, slim bar pulls on white uppers for clean line.",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "hardware",
+    },
+    {
+      area: "Pendant lighting",
+      name: "3× brass/glass pendants",
+      details: "Schoolhouse or clear glass globe style over main work area. Warm glow for mountain evenings.",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "fixture",
+    },
+    {
+      area: "Under-cabinet lighting",
+      name: "Warm white LED strips",
+      details: "Illuminate countertops and create ambiance for late-night Catskills kitchen hangouts.",
+      store: "TBD — Home Depot or Lowe's",
+      status: "to select",
+      category: "fixture",
+    },
+  ],
+  storage: [
+    "Full-height pull-out pantry cabinet",
+    "Open wood shelf between uppers and backsplash (cookbooks, ceramics, oils)",
+    "Optional: rolling butcher block cart (movable island for extra prep space)",
+  ],
+  designNotes: [
+    "Two-tone cabinets — sage green lowers ground the space, white uppers keep it bright and open",
+    "L-shaped layout keeps kitchen open to living/dining — ideal for entertaining weekend guests",
+    "Farmhouse sink under east-facing window — Catskills mountain view while washing dishes",
+    "Brass hardware + brass pendants + brass faucet create a cohesive warm metallic thread",
+    "Warm marble-look counters complement Pale Oak walls without going cold or stark",
+    "Gray-green cabinet color bridges Healing Aloe bedroom and Boothbay Gray loft — whole-house cohesion",
+    "White subway backsplash with warm grout ties into bathroom tile palette",
+    "Work triangle (range → sink → fridge) is compact and efficient",
+    "Open shelving adds farmhouse character and display space",
+    "\"My time coming, any day, don't worry about me, no\" — the kitchen is coming together",
+  ],
+};
+
+const KITCHEN_CATEGORY_COLORS: Record<string, { bg: string; color: string; border: string }> = {
+  cabinet: { bg: "#e8f0e4", color: "#3d6b4c", border: "#8B9E8B" },
+  surface: { bg: "#f0e8da", color: "#6a5a35", border: "#c5a55a" },
+  fixture: { bg: "#e4ecf5", color: "#3a5a8a", border: "#7a9cc5" },
+  hardware: { bg: "#faeeda", color: "#854f0b", border: "#d4af37" },
+};
+
 const STATUS_CONFIG: Record<string, { label: string; bg: string; color: string; dot: string }> = {
   planned: { label: "Planned", bg: "#e8f0e4", color: "#3d6b4c", dot: "#4a8a55" },
   "not started": { label: "Not started", bg: "#f0ece4", color: "#8a7a50", dot: "#b5a060" },
@@ -191,25 +307,15 @@ function TileCard({ tile }: { tile: typeof BATHROOMS[0]["tiles"][0] }) {
   const cat = CATEGORY_COLORS[tile.category] || CATEGORY_COLORS.wall;
   return (
     <div style={{
-      background: "#fff",
-      borderRadius: 12,
-      border: `1.5px solid ${cat.border}`,
-      padding: "16px 18px",
-      marginBottom: 12,
+      background: "#fff", borderRadius: 12, border: `1.5px solid ${cat.border}`,
+      padding: "16px 18px", marginBottom: 12,
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
         <div>
           <span style={{
-            display: "inline-block",
-            fontSize: 10,
-            fontWeight: 600,
-            letterSpacing: ".5px",
-            textTransform: "uppercase",
-            background: cat.bg,
-            color: cat.color,
-            padding: "2px 8px",
-            borderRadius: 6,
-            marginBottom: 6,
+            display: "inline-block", fontSize: 10, fontWeight: 600, letterSpacing: ".5px",
+            textTransform: "uppercase", background: cat.bg, color: cat.color,
+            padding: "2px 8px", borderRadius: 6, marginBottom: 6,
           }}>{tile.area}</span>
           <div style={{ fontSize: 15, fontWeight: 600, color: "#2a2a28", marginTop: 4 }}>{tile.name}</div>
           <div style={{ fontSize: 12.5, color: "#888580", marginTop: 2 }}>{tile.details}</div>
@@ -219,14 +325,8 @@ function TileCard({ tile }: { tile: typeof BATHROOMS[0]["tiles"][0] }) {
         </div>
       </div>
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        gap: 8,
-        background: "#faf8f5",
-        borderRadius: 8,
-        padding: "10px 12px",
-        fontSize: 12,
-        marginTop: 10,
+        display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8,
+        background: "#faf8f5", borderRadius: 8, padding: "10px 12px", fontSize: 12, marginTop: 10,
       }}>
         <div><span style={{ color: "#aaa8a0" }}>Store</span><br /><span style={{ color: "#555550", fontWeight: 500 }}>{tile.store}</span></div>
         <div><span style={{ color: "#aaa8a0" }}>Item</span><br /><span style={{ color: "#555550", fontWeight: 500 }}>{tile.itemNumber}</span></div>
@@ -237,26 +337,204 @@ function TileCard({ tile }: { tile: typeof BATHROOMS[0]["tiles"][0] }) {
   );
 }
 
+function KitchenMaterialCard({ material }: { material: typeof KITCHEN["materials"][0] }) {
+  const cat = KITCHEN_CATEGORY_COLORS[material.category] || KITCHEN_CATEGORY_COLORS.surface;
+  return (
+    <div style={{
+      background: "#fff", borderRadius: 12, border: `1.5px solid ${cat.border}`,
+      padding: "16px 18px", marginBottom: 12,
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div>
+          <span style={{
+            display: "inline-block", fontSize: 10, fontWeight: 600, letterSpacing: ".5px",
+            textTransform: "uppercase", background: cat.bg, color: cat.color,
+            padding: "2px 8px", borderRadius: 6, marginBottom: 6,
+          }}>{material.area}</span>
+          <div style={{ fontSize: 15, fontWeight: 600, color: "#2a2a28", marginTop: 4 }}>{material.name}</div>
+          <div style={{ fontSize: 12.5, color: "#888580", marginTop: 4, lineHeight: 1.5 }}>{material.details}</div>
+        </div>
+        <span style={{
+          fontSize: 10, fontWeight: 600, background: "#faeeda", color: "#854f0b",
+          padding: "2px 8px", borderRadius: 6, textTransform: "uppercase",
+          flexShrink: 0, marginLeft: 12,
+        }}>{material.status}</span>
+      </div>
+      <div style={{
+        display: "grid", gridTemplateColumns: "1fr", gap: 4,
+        background: "#faf8f5", borderRadius: 8, padding: "10px 12px", fontSize: 12, marginTop: 10,
+      }}>
+        <div><span style={{ color: "#aaa8a0" }}>Source: </span><span style={{ color: "#555550", fontWeight: 500 }}>{material.store}</span></div>
+      </div>
+    </div>
+  );
+}
+
+function KitchenDetail({ onBack }: { onBack: () => void }) {
+  const status = STATUS_CONFIG[KITCHEN.status];
+  return (
+    <div>
+      <button onClick={onBack} style={{
+        background: "none", border: "none", cursor: "pointer", fontSize: 13,
+        color: "#8a7a50", fontWeight: 600, padding: "0 0 16px", fontFamily: "inherit",
+      }}>
+        &larr; Back
+      </button>
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
+        <div>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: "#2a2a28", margin: 0, letterSpacing: "-0.5px" }}>{KITCHEN.name}</h1>
+          <div style={{ fontSize: 14, color: "#888580", marginTop: 4 }}>{KITCHEN.location}</div>
+        </div>
+        <span style={{
+          display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600,
+          background: status.bg, color: status.color, padding: "5px 12px", borderRadius: 20,
+        }}>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: status.dot }} />
+          {status.label}
+        </span>
+      </div>
+
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 28,
+      }}>
+        {[
+          { label: "Layout", value: KITCHEN.layout },
+          { label: "Style", value: KITCHEN.style },
+          { label: "Walls", value: KITCHEN.paintColor },
+          { label: "Budget", value: "TBD" },
+        ].map((item, i) => (
+          <div key={i} style={{ background: "#faf8f5", borderRadius: 10, padding: "12px 14px" }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: "#aaa8a0", textTransform: "uppercase", letterSpacing: ".5px" }}>{item.label}</div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: "#2a2a28", marginTop: 4 }}>{item.value}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 28,
+      }}>
+        {[
+          { label: "North wall", value: KITCHEN.dimensions.northWall },
+          { label: "East wall", value: KITCHEN.dimensions.eastWall },
+          { label: "Counter area", value: KITCHEN.dimensions.totalCounter },
+        ].map((item, i) => (
+          <div key={i} style={{ background: "#faf8f5", borderRadius: 10, padding: "12px 14px" }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: "#aaa8a0", textTransform: "uppercase", letterSpacing: ".5px" }}>{item.label}</div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: "#2a2a28", marginTop: 4 }}>{item.value}</div>
+          </div>
+        ))}
+      </div>
+
+      <h2 style={{ fontSize: 16, fontWeight: 700, color: "#2a2a28", margin: "0 0 12px", letterSpacing: "-0.3px" }}>Materials & selections</h2>
+      {KITCHEN.materials.map((material, i) => (
+        <KitchenMaterialCard key={i} material={material} />
+      ))}
+
+      <h2 style={{ fontSize: 16, fontWeight: 700, color: "#2a2a28", margin: "24px 0 12px", letterSpacing: "-0.3px" }}>Storage plan</h2>
+      <div style={{ background: "#fff", borderRadius: 12, border: "1px solid #e8e5e0", overflow: "hidden" }}>
+        {KITCHEN.storage.map((item, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", padding: "12px 16px",
+            borderBottom: i < KITCHEN.storage.length - 1 ? "1px solid #f0ede8" : "none",
+          }}>
+            <span style={{ color: "#c5a55a", marginRight: 10, fontSize: 14 }}>&#9679;</span>
+            <span style={{ fontSize: 14, color: "#2a2a28" }}>{item}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2 style={{ fontSize: 16, fontWeight: 700, color: "#2a2a28", margin: "24px 0 12px", letterSpacing: "-0.3px" }}>Design notes</h2>
+      <div style={{
+        background: "#faf8f5", borderRadius: 12, padding: "16px 18px", borderLeft: "3px solid #8B9E8B",
+      }}>
+        {KITCHEN.designNotes.map((note, i) => (
+          <div key={i} style={{
+            fontSize: 13, color: "#555550", lineHeight: 1.6, padding: "4px 0", paddingLeft: 12, position: "relative",
+          }}>
+            <span style={{ position: "absolute", left: 0, color: "#8B9E8B" }}>*</span>
+            {note}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function KitchenCard({ onClick }: { onClick: () => void }) {
+  const status = STATUS_CONFIG[KITCHEN.status];
+  return (
+    <div onClick={onClick} style={{
+      background: "#fff", borderRadius: 14, border: "1.5px solid #e8e5e0",
+      padding: "20px 22px", cursor: "pointer", transition: "border-color 0.2s, box-shadow 0.2s",
+      marginBottom: 12,
+    }}
+    onMouseEnter={e => { e.currentTarget.style.borderColor = "#8B9E8B"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(139,158,139,0.15)"; }}
+    onMouseLeave={e => { e.currentTarget.style.borderColor = "#e8e5e0"; e.currentTarget.style.boxShadow = "none"; }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div>
+          <div style={{ fontSize: 18, fontWeight: 700, color: "#2a2a28", letterSpacing: "-0.3px" }}>{KITCHEN.name}</div>
+          <div style={{ fontSize: 13, color: "#888580", marginTop: 3 }}>{KITCHEN.location}</div>
+        </div>
+        <span style={{
+          display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 600,
+          background: status.bg, color: status.color, padding: "4px 10px", borderRadius: 16,
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: status.dot }} />
+          {status.label}
+        </span>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginTop: 14 }}>
+        <div style={{ background: "#faf8f5", borderRadius: 8, padding: "8px 10px" }}>
+          <div style={{ fontSize: 9, fontWeight: 600, color: "#bbb8b0", textTransform: "uppercase", letterSpacing: ".4px" }}>Layout</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#555550", marginTop: 2 }}>{KITCHEN.layout}</div>
+        </div>
+        <div style={{ background: "#faf8f5", borderRadius: 8, padding: "8px 10px" }}>
+          <div style={{ fontSize: 9, fontWeight: 600, color: "#bbb8b0", textTransform: "uppercase", letterSpacing: ".4px" }}>Style</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#555550", marginTop: 2 }}>{KITCHEN.style}</div>
+        </div>
+        <div style={{ background: "#faf8f5", borderRadius: 8, padding: "8px 10px" }}>
+          <div style={{ fontSize: 9, fontWeight: 600, color: "#bbb8b0", textTransform: "uppercase", letterSpacing: ".4px" }}>Budget</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#555550", marginTop: 2 }}>TBD</div>
+        </div>
+      </div>
+      <div style={{ marginTop: 12, display: "flex", gap: 6, flexWrap: "wrap" }}>
+        {[
+          { label: "Two-tone shaker cabinets", cat: "cabinet" },
+          { label: "Warm marble-look countertop", cat: "surface" },
+          { label: 'White farmhouse sink 33"', cat: "fixture" },
+          { label: "Brass cup pulls", cat: "hardware" },
+          { label: "White subway backsplash", cat: "surface" },
+          { label: "Brass pendant lights ×3", cat: "fixture" },
+        ].map((tag, i) => (
+          <span key={i} style={{
+            fontSize: 10.5, fontWeight: 500,
+            background: KITCHEN_CATEGORY_COLORS[tag.cat]?.bg || "#f0f0ec",
+            color: KITCHEN_CATEGORY_COLORS[tag.cat]?.color || "#555",
+            padding: "3px 8px", borderRadius: 6,
+          }}>
+            {tag.label}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; onBack: () => void }) {
   const status = STATUS_CONFIG[bathroom.status];
   const tileTotal = bathroom.tiles.reduce((s, t) => s + t.totalPrice, 0);
   const supplyTotal = bathroom.supplies.reduce((s, t) => s + t.price, 0);
   const fixtureEst = bathroom.fixtures.length > 0 ? 115 : 0;
   const grandTotal = tileTotal + supplyTotal + fixtureEst;
-
   return (
     <div>
       <button onClick={onBack} style={{
-        background: "none",
-        border: "none",
-        cursor: "pointer",
-        fontSize: 13,
-        color: "#8a7a50",
-        fontWeight: 600,
-        padding: "0 0 16px",
-        fontFamily: "inherit",
+        background: "none", border: "none", cursor: "pointer", fontSize: 13,
+        color: "#8a7a50", fontWeight: 600, padding: "0 0 16px", fontFamily: "inherit",
       }}>
-        &larr; All bathrooms
+        &larr; All rooms
       </button>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
@@ -265,15 +543,8 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
           <div style={{ fontSize: 14, color: "#888580", marginTop: 4 }}>{bathroom.location}</div>
         </div>
         <span style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 6,
-          fontSize: 12,
-          fontWeight: 600,
-          background: status.bg,
-          color: status.color,
-          padding: "5px 12px",
-          borderRadius: 20,
+          display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600,
+          background: status.bg, color: status.color, padding: "5px 12px", borderRadius: 20,
         }}>
           <span style={{ width: 7, height: 7, borderRadius: "50%", background: status.dot }} />
           {status.label}
@@ -281,10 +552,7 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
       </div>
 
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: 10,
-        marginBottom: 28,
+        display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 28,
       }}>
         {[
           { label: "Paint color", value: bathroom.paintColor },
@@ -292,11 +560,7 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
           { label: "Floor area", value: bathroom.dimensions.floor + " sqft" },
           { label: "Est. total", value: grandTotal > 0 ? formatCurrency(grandTotal) : "TBD" },
         ].map((item, i) => (
-          <div key={i} style={{
-            background: "#faf8f5",
-            borderRadius: 10,
-            padding: "12px 14px",
-          }}>
+          <div key={i} style={{ background: "#faf8f5", borderRadius: 10, padding: "12px 14px" }}>
             <div style={{ fontSize: 10, fontWeight: 600, color: "#aaa8a0", textTransform: "uppercase", letterSpacing: ".5px" }}>{item.label}</div>
             <div style={{ fontSize: 15, fontWeight: 600, color: "#2a2a28", marginTop: 4 }}>{item.value}</div>
           </div>
@@ -314,11 +578,8 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
           <div style={{ background: "#fff", borderRadius: 12, border: "1px solid #e8e5e0", overflow: "hidden" }}>
             {bathroom.supplies.map((s, i) => (
               <div key={i} style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "12px 16px",
-                borderBottom: i < bathroom.supplies.length - 1 ? "1px solid #f0ede8" : "none",
+                display: "flex", justifyContent: "space-between", alignItems: "center",
+                padding: "12px 16px", borderBottom: i < bathroom.supplies.length - 1 ? "1px solid #f0ede8" : "none",
               }}>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 500, color: "#2a2a28" }}>{s.name}</div>
@@ -335,13 +596,8 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
           <h2 style={{ fontSize: 16, fontWeight: 700, color: "#2a2a28", margin: "24px 0 12px", letterSpacing: "-0.3px" }}>Fixtures</h2>
           {bathroom.fixtures.map((f, i) => (
             <div key={i} style={{
-              background: "#fff",
-              borderRadius: 12,
-              border: "1px solid #e8e5e0",
-              padding: "14px 16px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              background: "#fff", borderRadius: 12, border: "1px solid #e8e5e0",
+              padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center",
             }}>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 500, color: "#2a2a28" }}>{f.name}</div>
@@ -350,13 +606,8 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
               <div style={{ textAlign: "right" }}>
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a28" }}>{f.priceRange}</div>
                 <span style={{
-                  fontSize: 10,
-                  fontWeight: 600,
-                  background: "#faeeda",
-                  color: "#854f0b",
-                  padding: "2px 8px",
-                  borderRadius: 6,
-                  textTransform: "uppercase",
+                  fontSize: 10, fontWeight: 600, background: "#faeeda", color: "#854f0b",
+                  padding: "2px 8px", borderRadius: 6, textTransform: "uppercase",
                 }}>{f.status}</span>
               </div>
             </div>
@@ -364,19 +615,11 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
 
           <h2 style={{ fontSize: 16, fontWeight: 700, color: "#2a2a28", margin: "24px 0 12px", letterSpacing: "-0.3px" }}>Design notes</h2>
           <div style={{
-            background: "#faf8f5",
-            borderRadius: 12,
-            padding: "16px 18px",
-            borderLeft: "3px solid #c5a55a",
+            background: "#faf8f5", borderRadius: 12, padding: "16px 18px", borderLeft: "3px solid #c5a55a",
           }}>
             {bathroom.designNotes.map((note, i) => (
               <div key={i} style={{
-                fontSize: 13,
-                color: "#555550",
-                lineHeight: 1.6,
-                padding: "4px 0",
-                paddingLeft: 12,
-                position: "relative",
+                fontSize: 13, color: "#555550", lineHeight: 1.6, padding: "4px 0", paddingLeft: 12, position: "relative",
               }}>
                 <span style={{ position: "absolute", left: 0, color: "#c5a55a" }}>*</span>
                 {note}
@@ -385,11 +628,8 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
           </div>
 
           <div style={{
-            marginTop: 28,
-            background: "linear-gradient(135deg, #f8f0e0 0%, #f0ece4 100%)",
-            borderRadius: 14,
-            padding: "20px 22px",
-            border: "1.5px solid #d4c8a8",
+            marginTop: 28, background: "linear-gradient(135deg, #f8f0e0 0%, #f0ece4 100%)",
+            borderRadius: 14, padding: "20px 22px", border: "1.5px solid #d4c8a8",
           }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: "#8a7a50", textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 12 }}>Budget summary</div>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
@@ -412,10 +652,7 @@ function BathroomDetail({ bathroom, onBack }: { bathroom: typeof BATHROOMS[0]; o
         </>
       ) : (
         <div style={{
-          background: "#faf8f5",
-          borderRadius: 14,
-          padding: "40px 20px",
-          textAlign: "center",
+          background: "#faf8f5", borderRadius: 14, padding: "40px 20px", textAlign: "center",
           border: "1.5px dashed #d5d0c5",
         }}>
           <div style={{ fontSize: 36, marginBottom: 12, opacity: 0.4 }}>&#9632;</div>
@@ -432,21 +669,14 @@ function BathroomCard({ bathroom, onClick }: { bathroom: typeof BATHROOMS[0]; on
   const tileTotal = bathroom.tiles.reduce((s, t) => s + t.totalPrice, 0);
   const supplyTotal = bathroom.supplies.reduce((s, t) => s + t.price, 0);
   const total = tileTotal + supplyTotal + (bathroom.fixtures.length > 0 ? 115 : 0);
-
   return (
-    <div
-      onClick={onClick}
-      style={{
-        background: "#fff",
-        borderRadius: 14,
-        border: "1.5px solid #e8e5e0",
-        padding: "20px 22px",
-        cursor: "pointer",
-        transition: "border-color 0.2s, box-shadow 0.2s",
-        marginBottom: 12,
-      }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = "#c5a55a"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(180,160,100,0.12)"; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = "#e8e5e0"; e.currentTarget.style.boxShadow = "none"; }}
+    <div onClick={onClick} style={{
+      background: "#fff", borderRadius: 14, border: "1.5px solid #e8e5e0",
+      padding: "20px 22px", cursor: "pointer", transition: "border-color 0.2s, box-shadow 0.2s",
+      marginBottom: 12,
+    }}
+    onMouseEnter={e => { e.currentTarget.style.borderColor = "#c5a55a"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(180,160,100,0.12)"; }}
+    onMouseLeave={e => { e.currentTarget.style.borderColor = "#e8e5e0"; e.currentTarget.style.boxShadow = "none"; }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
@@ -454,27 +684,14 @@ function BathroomCard({ bathroom, onClick }: { bathroom: typeof BATHROOMS[0]; on
           <div style={{ fontSize: 13, color: "#888580", marginTop: 3 }}>{bathroom.location}</div>
         </div>
         <span style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 5,
-          fontSize: 11,
-          fontWeight: 600,
-          background: status.bg,
-          color: status.color,
-          padding: "4px 10px",
-          borderRadius: 16,
+          display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 600,
+          background: status.bg, color: status.color, padding: "4px 10px", borderRadius: 16,
         }}>
           <span style={{ width: 6, height: 6, borderRadius: "50%", background: status.dot }} />
           {status.label}
         </span>
       </div>
-
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 8,
-        marginTop: 14,
-      }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginTop: 14 }}>
         <div style={{ background: "#faf8f5", borderRadius: 8, padding: "8px 10px" }}>
           <div style={{ fontSize: 9, fontWeight: 600, color: "#bbb8b0", textTransform: "uppercase", letterSpacing: ".4px" }}>Floor</div>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#555550", marginTop: 2 }}>{bathroom.dimensions.floor} sqft</div>
@@ -488,17 +705,14 @@ function BathroomCard({ bathroom, onClick }: { bathroom: typeof BATHROOMS[0]; on
           <div style={{ fontSize: 13, fontWeight: 600, color: "#555550", marginTop: 2 }}>{total > 0 ? formatCurrency(total) : "TBD"}</div>
         </div>
       </div>
-
       {bathroom.tiles.length > 0 && (
         <div style={{ marginTop: 12, display: "flex", gap: 6, flexWrap: "wrap" }}>
           {bathroom.tiles.map((t, i) => (
             <span key={i} style={{
-              fontSize: 10.5,
-              fontWeight: 500,
+              fontSize: 10.5, fontWeight: 500,
               background: CATEGORY_COLORS[t.category]?.bg || "#f0f0ec",
               color: CATEGORY_COLORS[t.category]?.color || "#555",
-              padding: "3px 8px",
-              borderRadius: 6,
+              padding: "3px 8px", borderRadius: 6,
             }}>
               {t.name.length > 30 ? t.name.substring(0, 28) + "..." : t.name}
             </span>
@@ -510,7 +724,7 @@ function BathroomCard({ bathroom, onClick }: { bathroom: typeof BATHROOMS[0]; on
 }
 
 export default function App() {
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
   const bathrooms = BATHROOMS;
 
   const totalBudget = bathrooms.reduce((s, b) => {
@@ -520,53 +734,56 @@ export default function App() {
     return s + t + sp + f;
   }, 0);
 
-  const planned = bathrooms.filter(b => b.status === "planned").length;
+  const planned = bathrooms.filter(b => b.status === "planned").length + (KITCHEN.status === "planned" ? 1 : 0);
   const notStarted = bathrooms.filter(b => b.status === "not started").length;
 
-  if (selected !== null) {
+  const wrapperStyle = {
+    fontFamily: '"Instrument Serif", Georgia, serif',
+    maxWidth: 640,
+    margin: "0 auto",
+    padding: "24px 16px",
+    minHeight: "100vh",
+    background: "#fefdfb",
+  };
+
+  const globalStyle = `
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500;600;700&display=swap');
+    * { box-sizing: border-box; font-family: "DM Sans", sans-serif; }
+  `;
+
+  if (selected === "kitchen") {
     return (
-      <div style={{
-        fontFamily: '"Instrument Serif", Georgia, serif',
-        maxWidth: 640,
-        margin: "0 auto",
-        padding: "24px 16px",
-        minHeight: "100vh",
-        background: "#fefdfb",
-      }}>
-        <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500;600;700&display=swap');
-          * { box-sizing: border-box; font-family: "DM Sans", sans-serif; }
-        `}</style>
-        <BathroomDetail bathroom={bathrooms[selected]} onBack={() => setSelected(null)} />
+      <div style={wrapperStyle}>
+        <style>{globalStyle}</style>
+        <KitchenDetail onBack={() => setSelected(null)} />
+      </div>
+    );
+  }
+
+  if (selected !== null && selected !== "kitchen") {
+    const idx = parseInt(selected);
+    return (
+      <div style={wrapperStyle}>
+        <style>{globalStyle}</style>
+        <BathroomDetail bathroom={bathrooms[idx]} onBack={() => setSelected(null)} />
       </div>
     );
   }
 
   return (
-    <div style={{
-      maxWidth: 640,
-      margin: "0 auto",
-      padding: "24px 16px",
-      minHeight: "100vh",
-      background: "#fefdfb",
-    }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500;600;700&display=swap');
-        * { box-sizing: border-box; font-family: "DM Sans", sans-serif; }
-      `}</style>
+    <div style={{ maxWidth: 640, margin: "0 auto", padding: "24px 16px", minHeight: "100vh", background: "#fefdfb" }}>
+      <style>{globalStyle}</style>
 
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontSize: 11, fontWeight: 600, color: "#c5a55a", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 6 }}>Phoenicia, NY</div>
-        <h1 style={{ fontSize: 30, fontWeight: 700, color: "#2a2a28", margin: 0, fontFamily: '"Instrument Serif", Georgia, serif', letterSpacing: "-0.5px" }}>Bathroom Renovations</h1>
-        <div style={{ fontSize: 13, color: "#999590", marginTop: 4 }}>3 bathrooms — tile, fixtures & budget tracker</div>
+        <h1 style={{
+          fontSize: 30, fontWeight: 700, color: "#2a2a28", margin: 0,
+          fontFamily: '"Instrument Serif", Georgia, serif', letterSpacing: "-0.5px",
+        }}>Home Renovations</h1>
+        <div style={{ fontSize: 13, color: "#999590", marginTop: 4 }}>3 bathrooms + 1 kitchen — tile, fixtures & budget tracker</div>
       </div>
 
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 10,
-        marginBottom: 24,
-      }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 24 }}>
         <div style={{ background: "#f0e8da", borderRadius: 10, padding: "12px 14px" }}>
           <div style={{ fontSize: 10, fontWeight: 600, color: "#8a7a50", textTransform: "uppercase", letterSpacing: ".5px" }}>Total est.</div>
           <div style={{ fontSize: 18, fontWeight: 700, color: "#2a2a28", marginTop: 3 }}>{totalBudget > 0 ? formatCurrency(totalBudget) : "TBD"}</div>
@@ -582,17 +799,16 @@ export default function App() {
       </div>
 
       <div style={{ fontSize: 12, fontWeight: 600, color: "#aaa8a0", textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 10 }}>All bathrooms</div>
-
       {bathrooms.map((b, i) => (
-        <BathroomCard key={b.id} bathroom={b} onClick={() => setSelected(i)} />
+        <BathroomCard key={b.id} bathroom={b} onClick={() => setSelected(String(i))} />
       ))}
 
+      <div style={{ fontSize: 12, fontWeight: 600, color: "#aaa8a0", textTransform: "uppercase", letterSpacing: ".5px", marginBottom: 10, marginTop: 24 }}>Kitchen</div>
+      <KitchenCard onClick={() => setSelected("kitchen")} />
+
       <div style={{
-        marginTop: 24,
-        padding: "16px 18px",
-        background: "#faf8f5",
-        borderRadius: 12,
-        borderLeft: "3px solid #c5a55a",
+        marginTop: 24, padding: "16px 18px", background: "#faf8f5",
+        borderRadius: 12, borderLeft: "3px solid #c5a55a",
       }}>
         <div style={{ fontSize: 12, fontWeight: 600, color: "#8a7a50", marginBottom: 6 }}>House details</div>
         <div style={{ fontSize: 12.5, color: "#888580", lineHeight: 1.7 }}>
