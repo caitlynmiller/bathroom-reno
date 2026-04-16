@@ -1,4 +1,3 @@
-https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn
 "use client";
 
 import { useState } from "react";
